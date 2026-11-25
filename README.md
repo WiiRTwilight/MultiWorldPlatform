@@ -7,7 +7,7 @@ MultiWorldPlatform 是一个仅依赖 SpongeAPI 的世界管理插件。开发�
 该插件可在以下服务端运行：
 
 - SpongeVanilla 1.21.1
-- SpongeForge 1.21.1
+- SpongeNeo 1.21.1
 
 ## 命令
 
