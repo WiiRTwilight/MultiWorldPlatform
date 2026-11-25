@@ -2,7 +2,7 @@
 
 **该项目由 AI 生成，README编写有AI参与。**
 
-MultiWorldPlatform 是一个仅依赖 SpongeAPI 的世界管理插件。开发期间内部名称 CommonWorldPlatform。
+MultiWorldPlatform 是一个运行于 Sponge 平台的世界管理插件。开发期间内部名称 CommonWorldPlatform。
 
 该插件可在以下服务端运行：
 
