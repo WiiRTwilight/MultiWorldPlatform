@@ -1,0 +1,97 @@
+制作一个名叫CommonWorldPlatform的Sponge 12插件，要求支持加载在SpongeNeo 1.21.1和SpongeVanilla 1.21.1，要求支持世界列出，创建，导入，导出，加载，卸载，删除，传送。并暴露出调用该插件世界的关于加载，卸载，创建，导入，删除等功能的接口。
+
+有疑问暂停制作并询问
+
+指令格式：
+
+列出现有世界：
+
+`/cwp list`
+
+输出如下：
+
+```
+[CommonWorldPlatform]
+- world: minecraft:overworld
+- DIM-1: minecraft:the_nether
+- DIM1: minecraft:the_end
+......
+```
+
+创建世界：
+
+`/cwp create <world_name> <environment> [args]`
+
+<world_name>代表世界名称
+
+<environment>代表世界维度类型（主世界minecraft:overworld，地狱minecraft:the_nether，末地minecraft:the_end）
+
+<args>代表参数：
+
+- `--seed=<int>`
+- `--world-type=<string, normal/flat/void>`，其中，flat为超平坦世界，void为创建一个什么都没有的虚空世界
+- `--no-structures` 不生成任何结构或者建筑，只生成地形
+- `--no-adjust-spawn`不调整出生点，哪怕出生点并不安全
+
+导入世界：
+
+`/cwp import <world_name>`
+
+导入由该插件导出的含有标识的zip文件，这个世界导入的<world_name>同时也对应该世界文件夹名称
+
+导出世界：
+
+`/cwp export <world_name>`
+
+将世界文件夹压缩为同名的zip文件，zip文件内应留有标识，并导出到`config/commonworldplatform/export`
+
+加载世界：
+
+`/cwp load <world_name>`
+
+只能加载已经存在但未被加载的世界
+
+踢出该世界所有玩家并卸载世界（主世界不能被卸载）：
+
+`/cwp unload <world_name> [args]`
+
+[args]列表：
+
+- `--tp-player=<string, world_name>`: 被踢出世界的玩家传送到什么世界，默认为主世界。
+
+删除世界：
+
+`/cwp destroy <world_name> [args]`
+
+注：如果世界未被卸载就使用这个指令，则拒绝删除
+
+<args>参数列表：
+
+- `--auto`:自动踢出玩家，卸载世界之后才删除世界
+
+传送玩家到某个世界：
+
+`/cwp tp <world_name> [player]`
+
+权限节点（没安装luckperms则要求原版3级op权限）：
+
+- commonworldplatform.list
+- commonworldplatform.create
+- commonworldplatform.import
+- commonworldplatform.load
+- commonworldplatform.unload
+- commonworldplatform.destroy
+- commonworldplatform.tp
+- commonworldplatform.tp.other (需要这个权限才能指定除执行者自己以外的其他玩家)
+
+其他要求：
+
+要求由该插件创建的世界可以单独设定游戏规则，比如doDaylightCycle昼夜更替规则
+
+要求该插件提供配置文件，存储为`config/commonworldplatform/config.conf`
+
+要求该插件将世界定义和世界游戏规则作为配置文件保存在`config/commonworldplatform/worlds/<world_name>.conf`
+
+要求该插件暴露接口，并写一个文档讲述如何使用这些接口，方便后续开发利用这些接口
+
+要求验证该插件的世界热重载是否安全。
